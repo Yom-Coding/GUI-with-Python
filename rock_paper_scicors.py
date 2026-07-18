@@ -1,11 +1,30 @@
-from tkinter import *
+from tkinter import * 
+import random
 root = Tk()
 root.geometry("500x500")
 root.config(background="white")
-
+options = ["Rock", "Paper", "Scissors"]
+player_score = 0
+computer_score = 0
 def game (player_input):
-    print (player_input)
+    global player_score, computer_score
+    computer_input = random.choice(options)
+    if player_input == computer_input:
+        result.config(text = "It is a Tie")
 
+    elif (player_input == "Rock" and computer_input == "Scissors") or (player_input == "Paper" and computer_input == "Rock") or (player_input == "Scissors" and computer_input == "Paper"):
+        result.config(text = "You have Won")
+        player_score = player_score + 1
+
+    else:
+        result.config(text = "You have Lost")
+        computer_score = computer_score + 1
+    
+    you_selected.config(text = "You have Selected :" + player_input)
+    comp_selected.config(text = "The Computer Selected :" + computer_input)
+
+    your_score.config(text = "Your Score : " + str(player_score))
+    comp_score.config(text = "Comp Score : " + str(computer_score))
 topframe = Frame(root)
 topframe.pack()
 rpc_label = Label(topframe, text="Rock Paper Scissors Game")
